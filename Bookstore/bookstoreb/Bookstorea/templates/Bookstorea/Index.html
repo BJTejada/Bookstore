@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BOOKSTORE</title>    
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <link rel="stylesheet" href="{% static 'controls.css' %}">
+        <link rel="stylesheet" href="{% static 'controls2.css' %}">
+        <script src="{% static 'script.js' %}" defer></script>
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    </head>
+    <body class="fondo" style="height: 100%; margin: 0; padding: 0; overflow-x: hidden; ">
+            <div class="navbar">
+              <ul>
+                <li><a href="" data-section="Inventario" id="idInventario">INVENTARIO Y VENTAS</a></li>
+                <li><a href="" data-section="Productos" id="idPageProductos">PRODUCTOS</a></li>
+                <li><a href="" data-section="admin">USUARIOS</a></li>
+                <li><a href="" data-section="Entradas_View" id="idPageEntradas">ENTRADAS</a></li>
+                <li><a href="" data-section="Reportes_View">REPORTES</a></li>
+                <li style="float:right;">
+                    {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}">
+                        <P class="ocultar" id="idUserLoged">{{ user.id }}</P>
+                        <p style="color: white;">{{ user.username }}  
+                        {% csrf_token %}
+                        <button type="submit" class="buttonLO">Cerrar Sesión</button>
+                        </p>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                    <a href="{% url 'registrar' %}">Registrar</a>
+                {% endif %}
+                </li> 
+              </ul>
+            </div>
+            <div id="content">
+              <h1 style="color: white;">BIENVENIDO A BOOKSTORE, SELECCIONA EL AREA DE TRABAJO EN EL NAVBAR</h1>
+            </div>
+    <script>
+        const insertClientURL = "{% url 'InsertClient_View' %}";
+        const insertVentaURL = "{% url 'InsertVenta_View' %}";
+        const insertDetVentaURL = "{% url 'InsertDetVenta_View' %}";
+        const generar_factura = "{% url 'generar_factura' %}";
+        const insertCompraURL = "{% url 'InsertCompra_View' %}";
+        const insertDetCompraURL = "{% url 'InsertDetCompra_View' %}";
+        const ProductoURL = "{% url 'ProductoCRUD_View' %}";
+        const GenerarFacturaURL = "{% url 'generar_factura' %}";
+        const ReportViewURL = "{% url 'Reportes_View' %}"
+    </script>
+    </body>
+</html>

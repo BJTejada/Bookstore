@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventario</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'controls.css' %}">
+    <link rel="stylesheet" href="{% static 'controls2.css' %}">
+</head>
+<body>
+<div class="parent" style="margin-top: 5px;">
+    <div class="div1" style="align-items: center;  margin-left: 10px;"> 
+        <form id="SFormProd">
+            <p style="color: white;">Buscar Producto</p>
+            <input type="text" name="text" class="input-a" id="prodSearch" placeholder="Producto" style="width: 40%; ">
+        </form>
+    </div>
+    <div class="div3" style="padding: 5px;">
+    {% if inventario_list %}
+        <table class="mi-tabla" style="width: 100%;" id="SourceTable" >
+            <thead>
+                <tr>
+                    {% for key in inventario_list.0.keys %}
+                        <th {% if key == "ID_PROD" %} class="ocultar" {% endif %} 
+                            style="background-color:#88ff88; color:rgb(0, 0, 0); text-align: center;">
+                            {{ key}}
+                        </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for item in inventario_list %}
+                    <tr onclick="transferRow(this)" style="cursor: pointer;">
+                            {% for value in item.items %}
+                                <td {% if value.0 == "ID_PROD" %} 
+                                        class="ocultar" id="id_prod"
+                                   {% elif value.0 == "ID_LOTE" %}
+                                         id="id_lote"
+                                    {% endif %}
+                                    style="color:white;">
+                                    {{ value.1 }}
+                                </td>
+                            {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay productos en el inventario.</p>
+    {% endif %}
+    </div>
+    <div class="div2" >
+        <div style=" background-color:rgba(53, 49, 49, 0.616);">
+        <!-- Botón para abrir el modal -->
+
+         <div style="display: flex; justify-content: space-between; align-items: center; margin: 5px; padding: 10px;">
+            <button id="openModalBtn" class="buttonbs">Seleccionar o Crear Cliente</button>
+            <p id="showClientName" style="color: white; font-size: 17px;">Cliente</p>
+            <p id="selectClientId" class="ocultar"></p>
+        </div>
+       
+        <!-- Modal -->
+        <div id="clientModal" class="modal">
+            <div class="modal-content">
+                <div class="search-column">
+                    <h2>Seleccionar cliente.</h2>
+                    <!-- Campo de búsqueda -->
+                    <form id="searchForm">
+                        <label for="clientSearch">Buscar Cliente:</label>
+                        <input type="text" id="clientSearch" name="clientSearch" placeholder="Escribe el nombre...">
+                        <button type="submit">Buscar</button>
+                    </form>
+                    <p id="idClienteSeleccionado"></p>
+                    {% if clientes_list %}
+                        <table id="tableClients" class="mi-tablac" style=" max-height: 70px; overflow-y: auto;">
+                            <thead>
+                                <tr>
+                                    {% for key in clientes_list.0.keys %}
+                                    <th {% if key == "ID_CLIENTE"%} class="ocultar" {% endif %} style="font-size: small;">
+                                        {{ key }}
+                                    </th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in clientes_list %}
+                                <tr onclick="transferRowC(this)" style="cursor: pointer;">
+                                    {% for value in item.items %}
+                                    <td {% if value.0 == "ID_CLIENTE" %} 
+                                            class="ocultar" id="id_cliente" 
+                                        {% endif %} 
+                                            style="color: white;"
+                                    >
+                                        {{value.1}}
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>no hay clientes</p>
+                    {% endif %}
+                </div>
+                <div class="form-column">
+                    <span class="close">&times;</span>
+                   
+                     <!--Formulario para crear nuevo cliente -->
+                     <form id="newClientForm" >
+                        <p class="ocultar" id="token">{% csrf_token %}</p>
+                        <label for="newClientName" class="labelf">Nombres:</label>
+                        <input type="text" class="inputf" id="newClientName" name="newClientName" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required title="completa el campo">
+                        <label for="newClientLName" class="labelf">Apellidos:</label>
+                        <input type="text" class="inputf" id="newClientLName" name="newClientLName" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required title="completa el campo">
+                        <label for="newClientPhone" class="labelf">Telefono:</label>
+                        <input type="text" class="inputf" id="newClientPhone" name="newClientPhone" maxlength="15" oninput="ValidarTelefono(this)" required title="completa el campo">
+                        <label for="newClientDUI" class="labelf">DUI:</label>
+                        <input type="text" class="inputf" id="newClientDUI" name="newClientDUI" maxlength="9" oninput="ValidarDui(this)" required title="completa el campo">
+                        <label for="newClientEmail" class="labelf">Correo:</label>
+                        <input type="text" class="inputf" id="newClientEmail" name="newClientEmail">
+                        <button type="submit" id="createClientBtn">Guardar Cliente</button>
+                    </form>
+                    
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+    <div class="div4">
+        {% csrf_token %}
+        <table class="mi-tabla" style="width: 100%; " id="SaleTable">
+            <thead>
+                <tr>
+                    <th style="background-color:#88ff88; color:rgb(0, 0, 0);" class="ocultar">ID_PROD</th>
+                    <th style="background-color:#88ff88; color:rgb(0, 0, 0);" >ID_LOTE	</th>
+                    <th style="background-color:#88ff88; color:rgb(0, 0, 0);">NOMBRE_PROD	</th>
+                    <th style="background-color:#88ff88; color:rgb(0, 0, 0);">MARCA_PROD</th>
+                    <th style="background-color:#88ff88; color:rgb(0, 0, 0);">PRECIO_VENTA</th>
+                    <th style="background-color:#88ff88; color:rgb(0, 0, 0);">CANTIDAD</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+<div class="div5" style="display: flex; justify-content: space-between; align-items: center; margin: 5px; padding: 10px;">
+    <button class="buttonbs" onclick="ProcesarVenta()">Procesar Venta</button>
+    <h2 id="TotalVenta" style="color: white;">total: $</h2>
+    <p id="idUser" class="ocultar">{{user.id}}</p>
+    <p id="idventatotal" class="ocultar"></p>
+</div>
+</div>
+</body>
+
+</html>

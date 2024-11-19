@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Ventas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'controls.css' %}">
+    <link rel="stylesheet" href="{% static 'controls2.css' %}">
+</head>
+<body>
+<div class="parentR">
+    <div class="divR1" >
+        <h1 style="color: white; text-align: center;">REPORTE DE VENTAS</h1>
+    </div>
+    
+    <div class="divR2" style="box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); text-align: center;">
+        <h2 style="color: white;">MODIFICACION DE FECHAS</h2>
+        <form id="RepordeForm" style="display: flex; flex-direction: column; align-items: center;">
+            <p class="ocultar" id="token">{% csrf_token %}</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                <!-- Primera columna: Fecha de Inicio -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <label for="fecha_inicio" style="color: white; font-size: 20px;">FECHA DE INICIO:</label>
+                    <input type="date" id="fecha_inicio" name="fecha_inicio"  style="margin-top: 5px;">
+                </div>
+                <!-- Segunda columna: Fecha de Fin -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <label for="fecha_fin" style="color: white; font-size: 20px;">FECHA DE FIN:</label>
+                    <input type="date" id="fecha_fin" name="fecha_fin" style="margin-top: 5px;">
+                </div>
+            </div>
+            <!-- Botón centrado debajo de los controles -->
+            <button type="button" id="BtnEnviarReporte" class="buttonbs" style="margin-top: 10px;">Generar Reporte</button>
+            <P></P>
+            <P></P>
+            <button type="button" id="BtnDescargar" onclick="GenerarReporte(this)" style="height: 50px; background-color: #0caa3b; color: rgb(255, 255, 255); border: none; cursor: pointer; padding: 0 20px;">
+                DESCARAR REPORTE
+            </button>
+        </form>
+    </div>
+    <div class="divR3">
+        {% if Report_list %}
+            <table class="mi-tabla" style=" width: 100%; margin-top: 15px;" id="ReportTable" >
+                <thead>
+                    <tr>
+                        {% for key in Report_list.0.keys %}
+                            <th style="background-color:#88ff88; color:rgb(0, 0, 0); text-align: center;">
+                                {{ key}}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody id="ReportTBody">
+                    {% for item in Report_list %}
+                        <tr style="cursor: pointer;">
+                            {% for value in item.items %}
+                                <td style="color:white;">
+                                    {{ value.1 }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay productos en el inventario.</p>
+        {% endif %}
+    </div>
+    <div class="divR4"></div>
+</div>
+</body>
+</html>
+

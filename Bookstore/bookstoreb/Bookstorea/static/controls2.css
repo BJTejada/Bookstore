@@ -1,0 +1,165 @@
+.parent {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+  }
+  
+  .div1 { grid-area: 1 / 1 / 2 / 5; }
+  .div2 { grid-area: 1 / 5 / 2 / 9; }
+  .div3 { grid-area: 2 / 1 / 10 / 5; 
+          overflow-y: auto;
+          max-height: 600px;
+          scrollbar-color: #88ff88 #585a5827;
+        }
+  .div4 { grid-area: 2 / 5 / 8 / 9; 
+          overflow-y: auto;
+          max-height: 500px;
+          scrollbar-color: #88ff88 #585a5827;
+        }
+  .div5 { grid-area: 8 / 5 / 10 / 9; }
+
+
+select {
+        width: 200px;
+        padding: 5px;
+        background-color:  rgba(24, 22, 22, 0.897);;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: white;
+      }  
+.mi-tabla {
+        width: 100%; /* Ancho completo */
+        border-collapse: collapse; /* Evita bordes dobles */
+        border-radius: 10px; /* Bordes redondeados */
+        overflow: hidden; /* Esconde el borde redondeado */
+        background-color: #2d362f9f;
+      }
+      
+.mi-tabla th, .mi-tabla td {
+        padding: 10px; /* Espacio interno */
+        text-align: left; /* Alineación del texto */
+        border-bottom: 1px solid white;
+      }
+      
+      .mi-tabla thead {
+        background-color: #88ff88; /* Color de fondo para el encabezado */
+        color: rgb(0, 0, 0); /* Color del texto en el encabezado */
+      }
+      .mi-tabla tr:hover {
+        background-color: #1a631a; /* Color de fondo al pasar el ratón */
+      }
+/**/
+.mi-tablac {
+  width: 100%; /* Ancho completo */
+  border-collapse: collapse; /* Evita bordes dobles */
+  border-radius: 10px; /* Bordes redondeados */
+  background-color: #2d362f9f;
+}
+
+.mi-tablac th, .mi-tablac td {
+  padding: 10px; /* Espacio interno */
+  text-align: left; /* Alineación del texto */
+  border-bottom: 1px solid white;
+}
+
+.mi-tablac thead {
+  background-color: #88ff88; /* Color de fondo para el encabezado */
+  color: rgb(0, 0, 0); /* Color del texto en el encabezado */
+}
+.mi-tablac tr:hover {
+  background-color: #1a631a; /* Color de fondo al pasar el ratón */
+}
+
+/**/
+.ocultar{
+  display: none;
+}
+/* Estilos básicos para el modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(6, 6, 6, 0.582);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  display: grid;  
+  grid-template-columns: 1fr 1fr;  
+}
+
+/* Cada columna puede tener su propio estilo */
+.search-column {
+  flex: 1;  /* Toma el mismo espacio que la otra columna */
+  margin-right: 10px;  /* Espacio entre las columnas */
+  width: 800px;
+  height: 500px;  /* Altura fija */
+    overflow-y: auto;  /* Habilitar scroll vertical */
+}
+
+.form-column {
+  flex: 1;  /* Toma el mismo espacio que la otra columna */
+  align-items: center;
+}
+
+/* Estilos para el formulario y los inputs */
+#newClientForm input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+#newClientForm button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#newClientForm button:hover {
+  background-color: #45a049;
+}
+/* El botón "X" para cerrar el modal */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.labelf {
+  display: inline-block;
+  width: 15%; /* Ancho fijo para los labels */
+  text-align: right; /* Alinear texto a la derecha */
+}
+
+.inputf {
+  display: inline-block;
+  width: 100%; /* Hacer que los inputs ocupen el espacio disponible */
+  box-sizing: border-box; /* Incluye padding y border dentro del width */
+  margin-left: 10px; /* Espacio entre label e input */
+}
+
+
+.form-editproduct{
+  background-color: #45a653;
+}

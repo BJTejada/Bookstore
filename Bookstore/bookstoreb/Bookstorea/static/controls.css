@@ -1,0 +1,352 @@
+/*estilos de controles con css*/
+/*boton logout*/
+.buttonLO {
+  background-color: red; /* Color de fondo rojo */
+  color: inherit;        /* Hereda el color de la fuente del elemento padre */
+  border: none;         /* Sin borde */
+  border-radius: 10px;  /* Esquinas redondeadas */
+  padding: 10px 20px;   /* Espaciado interno */
+  font-size: inherit;    /* Hereda el tamaño de fuente */
+  cursor: pointer;       /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s; /* Transición suave al cambiar color */
+}
+
+.buttonLO:hover {
+  background-color: darkred; /* Color al pasar el mouse */
+}
+
+/*boton negro slide*/
+.buttonbs {
+  padding: 15px 25px;
+  border:unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 15px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+  overflow: hidden;
+ }
+ 
+ .buttonbs::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+
+  background-color: #1e69f5;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms
+ }
+ 
+ .buttonbs:hover {
+  color: #e8e8e8;
+ }
+ 
+ .buttonbs:hover::before {
+  width: 100%;
+ }
+/*boton negro slide*/
+.buttonb {
+  width: 200px;
+  height: 60px;
+  border: 3px solid #18cc18;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1.2em;
+  font-weight: 550;
+}
+
+.buttonb:hover {
+  background: #18cc18;
+  color: white;
+  font-size: 1.5em;
+}
+
+/*boton azul*/
+.button-blue{
+  --color: #1600dd;
+  font-family: inherit;
+  display: inline-block;
+  width: 70%;
+  height: 2.6em;
+  line-height: 2.5em;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+}
+.button-blue::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 200px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+.button-blue:hover {
+  color: rgb(255, 255, 255);
+}
+.button-blue:before {
+  top: 30%;
+  left: 30%;
+  
+  transition: .9s all;
+}
+.button-blue:hover::before {
+  top: -30px;
+  left: -30px;
+  right: -30px;
+}
+/*BOTON ROJO*/
+.button-red {
+    --color: rgba(177, 3, 3, 0.904);
+    font-family: inherit;
+    display: inline-block;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    margin: 20px;
+    font-size: 17px;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+  }
+.button-red::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+.button-red:hover {
+    color: rgb(255, 255, 255);
+  }
+.button-red:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+.button-red:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+/*boton azul para cliente*/
+/*BOTON ROJO*/
+.button-bluec {
+  --color: #1e69f5;
+  font-family: inherit;
+  display: inline-block;
+  width: 6em;
+  height: 2.6em;
+  line-height: 2.5em;
+  overflow: hidden;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+}
+.button-bluec::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+.button-bluec:hover {
+  color: rgb(255, 255, 255);
+}
+.button-bluec:before {
+  top: 100%;
+  left: 100%;
+  transition: .3s all;
+}
+.button-bluec:hover::before {
+  top: -30px;
+  left: -30px;
+}
+/*boton negro*/
+
+/* From Uiverse.io by JaydipPrajapati1910 */ 
+.button-black {
+    --color: rgb(96, 154, 241);
+    font-family: inherit;
+    display: inline-block;
+    width: auto;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    margin: 20px;
+    font-size: 17px;
+    z-index: 1;
+    color: #000000;
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+  }
+.button-black::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+.button-black:hover {
+    color: white;
+  }
+.button-black:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+.button-black:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+
+  /*INPUT DE TEXTP*/
+.input-a {
+    border: 2px solid transparent;
+    width: 80%;
+    height: 1.5em;
+    font-size: 1rem;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border-radius: 5px;
+    transition: all 0.5s;
+  }
+  .input-a:hover,
+  .input-a:focus {
+    border: 2px solid #4A9DEC;
+    box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+    background-color: white;
+  }
+  
+.input {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #fff;
+    background-color: rgb(28,28,30);
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    width: 90%;
+    border: none;
+    outline: none;
+    padding: 0.4vw;
+    
+    transition: .4s;
+  }
+  .input:hover {
+    box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+  }
+  .input:focus {
+    box-shadow: 0 0 0 .15vw skyblue;
+  }
+
+  /*NAVBAR*/
+  .navbar a {
+    color: #ffffff;
+    font-weight: 600;
+    padding: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones suaves */
+}
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  
+  li a:hover {
+    background-color: #07941e;
+    border-radius: 5px;
+  }
+
+/* Estilo para el enlace activo */
+a.active {
+  text-decoration: none; /* Agrega subrayado */
+  background-color: #07941e;
+  border-radius: 5px;
+  border: 3px solid white;
+}
+
+
+
+.parentP {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+  .divP1 { grid-area: 1 / 1 / 2 / 5; }
+  .divP2 { grid-area: 2 / 1 / 7 / 5; 
+          overflow-y: auto;
+          max-height: 400px;
+          scrollbar-color: #88ff88 #585a5827;
+        }
+  .divP3 { grid-area: 1 / 5 / 4 / 9; }
+  .divP4 { grid-area: 4 / 5 / 7 / 9; }
+
+  .parentR {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .divR1 { grid-area: 1 / 1 / 2 / 9; }
+    .divR2 { grid-area: 2 / 1 / 9 / 3; }
+    .divR3 { grid-area: 2 / 3 / 9 / 9; 
+              overflow-y: auto;
+              max-height: 600px;
+              scrollbar-color: #88ff88 #585a5827;
+            }
+

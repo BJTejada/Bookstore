@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'controls.css' %}">
+    <link rel="stylesheet" href="{% static 'controls2.css' %}">
+</head>
+<body>
+    <div class="parent" style="margin-top: 5px;">
+        <div class="div1" style="align-items: center;  margin-left: 10px;"> 
+            <form id="SFormProductoC">
+                <p style="color: white;">Buscar Producto</p>
+                <input type="text" name="text" class="input-a" id="prodSearchC" placeholder="Producto" style="width: 40%; ">
+            </form>
+        </div>
+        <div class="div3" style="padding: 5px;">
+            {% if Productos_list %}
+                <table class="mi-tabla" style="width: 100%;" id="SourceTableC" >
+                    <thead>
+                        <tr>
+                            {% for key in Productos_list.0.keys %}
+                                <th style="background-color:#88ff88; color:rgb(0, 0, 0); text-align: center;">
+                                    {{ key}}
+                                </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for item in Productos_list %}
+                            <tr onclick="TransferProd(this)" style="cursor: pointer;">
+                                    {% for value in item.items %}
+                                        <td style="color:white;">
+                                            {{ value.1 }}
+                                        </td>
+                                    {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No hay productos en el Productos.</p>
+            {% endif %}
+        </div>
+        <div class="div2">
+            <h1 style="color: whITE;">DETALLE DE COMPRAS</h1>
+        </div>
+        <div class="div4">
+            {% csrf_token %}
+            <table class="mi-tabla" style="width: 100%; " id="BuyTable">
+                <thead>
+                    <tr>
+                        <th style="background-color:#88ff88; color:rgb(0, 0, 0);" class="ocultar">ID_PROD</th>
+                        <th style="background-color:#88ff88; color:rgb(0, 0, 0);" >NOMBRE_PROD</th>
+                        <th style="background-color:#88ff88; color:rgb(0, 0, 0);">PROVEEDOR</th>
+                        <th style="background-color:#88ff88; color:rgb(0, 0, 0);">MARCA</th>
+                        <th style="background-color:#88ff88; color:rgb(0, 0, 0);">PRECIO_COMPRA</th>
+                        <th style="background-color:#88ff88; color:rgb(0, 0, 0);">PRECIO_VENTA</th>
+                        <th style="background-color:#88ff88; color:rgb(0, 0, 0);">CANT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="div5" style="display: flex; justify-content: space-between; align-items: center; margin: 5px; padding: 10px;">
+            <button class="buttonbs" onclick="ProcesarCompra()">Procesar Compra</button>
+            <p id="idCompraTotal" class="ocultar"></p>
+            <h2 id="TotalCompra" style="color: white;">total: $</h2>
+            <p id="idUserC" class="ocultar">{{user.id}}</p>
+            
+
+        </div>
+    </div>
+</body>
+</html>
